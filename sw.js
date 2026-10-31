@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pepito-v3-10-pwa';
+const CACHE_NAME = 'pepito-v3-11-pwa';
 const APP_SHELL = ['./','./index.html','./manifest.webmanifest','./icons/pepito-192.svg','./icons/pepito-512.svg','./assets/pipito-voando-v2.png','./assets/pipito-globo-v3.png','./assets/pipito-calmo-v3.png','./assets/pipito-retrato-v3.png','./assets/pipito-curioso-v3.png'];
 
 self.addEventListener('install', event => {
