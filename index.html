@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#f3f0e8">
 <meta name="description" content="PEPITO 3.0 — um laboratório acessível, transparente e divertido para explorar o acaso.">
-<title>PEPITO — A Calopsita da Sorte · v3.2</title>
+<title>PEPITO — A Calopsita da Sorte · v3.3</title>
 <style>
 :root{
  --bg:#171c1e;--panel:#252e31;--panel2:#303a3d;--ink:#f7f2e8;--muted:#c3c0b6;
@@ -33,7 +33,7 @@ h3{font-size:14px;margin:0 0 7px;color:var(--gold)}
 p{margin:0}
 .small{font-size:12px;color:var(--muted);line-height:1.45}
 .mascot-row{display:flex;align-items:center;gap:11px}
-.mascot-photo{width:72px;height:72px;border-radius:50%;object-fit:contain;border:0;background:transparent;flex:none}
+.mascot-photo{width:72px;height:72px;border-radius:50%;object-fit:cover;object-position:50% 25%;border:2px solid var(--gold);background:#f7edcc;flex:none}
 .speech{background:#f4eedf;color:#28251e;border-radius:15px;padding:10px 12px;font-size:14px;line-height:1.35;position:relative}
 .speech:before{content:"";position:absolute;left:-7px;top:20px;border-width:7px 8px 7px 0;border-style:solid;border-color:transparent #f4eedf transparent transparent}
 .machine-choice{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -176,7 +176,7 @@ body[data-pipito="celebrate"] .mascot-photo{animation:pipitoAvatarPop .72s ease-
 
 <section class="card intro">
  <div class="mascot-row">
-  <img class="mascot-photo" src="./assets/pipito-avatar-v4.svg" alt="Pipito, calopsita cinza de topete amarelo e bochechas laranjas">
+  <img class="mascot-photo" src="./assets/pipito-retrato-v3.png" alt="Pipito, calopsita cinza de topete amarelo e bochechas laranjas">
   <div class="speech" id="speech" aria-live="polite">Olá! Sou o Pipito. Vamos descobrir o que o acaso preparou?</div>
  </div>
  <div class="small" style="align-self:center">Escolha uma máquina e toque em <b>GIRAR</b>. Os botões são grandes e o resultado aparece em seis espaços.</div>
