@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#f3f0e8">
-<meta name="description" content="PEPITO 2.0 — um laboratório leve, acessível e transparente para explorar o acaso.">
-<title>PEPITO — A Calopsita da Sorte · v2.0</title>
+<meta name="description" content="PEPITO 3.0 — um laboratório acessível, transparente e divertido para explorar o acaso.">
+<title>PEPITO — A Calopsita da Sorte · v3.0</title>
 <style>
 :root{
  --bg:#171c1e;--panel:#252e31;--panel2:#303a3d;--ink:#f7f2e8;--muted:#c3c0b6;
@@ -119,7 +119,7 @@ footer{text-align:center;color:#9da4a1;font-size:11px;padding:3px 8px 15px}
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 
-/* PEPITO 2.0 · acabamento claro, compacto e consistente */
+/* PEPITO 3.0 · acabamento claro, compacto e consistente */
 :root{--bg:#f3f0e8;--panel:#fffdf8;--panel2:#f6f2e7;--ink:#263136;--muted:#59666a;--gold:#c99619;--gold2:#a87910;--orange:#d97735;--green:#52745f;--line:#d8d2c3;--cream:#fff9e9;--red:#b94b35;--blue:#398e9e;--shadow:0 8px 24px #20252813}
 html{background:var(--bg);color:var(--ink)}
 body{background:radial-gradient(ellipse at 50% -18%,#fff7d7 0,#f3f0e8 54%,#eee9dc 100%)}
@@ -140,20 +140,35 @@ h1{color:#84620e}
 
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.weather-controls{display:flex;gap:6px;margin:6px 0}.weather-controls input{width:100%;min-width:0;border:1px solid #cfc7b7;border-radius:10px;padding:9px;background:#fff;color:#263136;font:inherit}.weather-controls button{white-space:nowrap}.@keyframes pipitoBounce{0%,100%{transform:translateY(0) rotate(0)}40%{transform:translateY(-8px) rotate(-4deg)}70%{transform:translateY(1px) rotate(3deg)}}.globe-mascot{transition:filter .25s}body.pipito-excited .globe-mascot,body.pipito-pop .mascot-photo{animation:pipitoBounce .65s ease}body.pipito-calm .globe-mascot{filter:drop-shadow(0 0 12px #efc74d)}.audio-settings{position:relative}.audio-settings summary{list-style:none;cursor:pointer;display:grid;place-items:center;width:45px;height:45px;border-radius:13px;background:#f6f1e5;border:1px solid #d5cebd;color:#263136;font-size:18px}.audio-settings summary::-webkit-details-marker{display:none}.audio-pop{position:absolute;right:0;top:52px;z-index:10;width:220px;padding:12px;background:#fffdf8;border:1px solid #ded8c9;border-radius:13px;box-shadow:0 8px 24px #20252822;display:grid;gap:10px;font-size:13px}.audio-pop label{display:flex;align-items:center;gap:7px}.audio-pop input[type=range]{width:100px}.tile a{color:#735510;font-weight:700}@media(prefers-reduced-motion:reduce){.globe-mascot,body.pipito-excited .globe-mascot,body.pipito-pop .mascot-photo{animation:none!important}}</style>
 
+<style>
+.mascot-photo{object-position:50% 25%;background:#f7edcc}
+.tipbird{object-position:50% 18%;background:#f7edcc}
+.tagline{color:var(--muted)}
+.globe-mascot{left:70%;top:-12%;width:62%;height:92%;opacity:.92;will-change:transform,opacity;transition:opacity .22s ease,filter .22s ease}
+@keyframes pipitoSway{0%,100%{transform:translateX(-50%) translateY(0) rotate(0)}30%{transform:translateX(-50%) translateY(-5px) rotate(-1.7deg)}65%{transform:translateX(-50%) translateY(-1px) rotate(1.2deg)}}
+@keyframes pipitoCelebrate{0%,100%{transform:translateX(-50%) translateY(0) rotate(0)}38%{transform:translateX(-50%) translateY(-13px) rotate(-3deg)}68%{transform:translateX(-50%) translateY(1px) rotate(2deg)}}
+body[data-pipito="spin"] .globe-mascot{animation:pipitoSway 1.35s ease-in-out infinite}
+body[data-pipito="anticipate"] .globe-mascot{transform:translateX(-50%) rotate(-2deg);filter:drop-shadow(0 0 11px #efc74d)}
+body[data-pipito="celebrate"] .globe-mascot{animation:pipitoCelebrate .72s ease-out 2}
+@keyframes pipitoAvatarPop{0%,100%{transform:scale(1)}38%{transform:scale(1.07)}68%{transform:scale(.98)}}
+body[data-pipito="celebrate"] .mascot-photo{animation:pipitoAvatarPop .72s ease-out 1;transform-origin:50% 80%}
+@media(prefers-reduced-motion:reduce){body[data-pipito] .globe-mascot,body[data-pipito] .mascot-photo{animation:none!important;transition:none!important}}
+@media(max-width:480px){html,body{overflow-x:clip}.tagline{display:none}.brand-bird{width:46px;height:46px}.head-actions{gap:4px}.iconbtn,.audio-settings summary{width:40px;height:40px}}
+</style>
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="icon" type="image/svg+xml" href="./icons/pepito-192.svg">
 <link rel="apple-touch-icon" href="./icons/pepito-192.svg">
-<meta name="theme-color" content="#202528">
+<meta name="theme-color" content="#f3f0e8">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="PEPITO">
 </head>
-<body>
+<body data-pipito="idle">
 <div class="app">
 <header>
  <div class="brand">
-  <div class="brand-bird"><img src="./assets/pipito-retrato.svg" alt="Pipito, calopsita cinza de rosto amarelo"></div>
+  <div class="brand-bird"><img src="./icons/pepito-192.svg" alt=""></div>
   <div><h1>PEPITO</h1><div class="tagline">A CALOPSITA DA SORTE · Um pequeno laboratório de grandes esperanças.</div></div>
  </div>
  <div class="head-actions"><button class="iconbtn" id="helpBtn" aria-label="Ajuda">?</button><button class="iconbtn" id="settingsBtn" aria-label="Configurações e som">⚙</button><button class="iconbtn" id="soundBtn" aria-label="Ativar efeitos sonoros" aria-pressed="false">♪</button><details class="audio-settings"><summary aria-label="Opções de áudio">♫</summary><div class="audio-pop"><label><input id="musicToggle" type="checkbox"> Música ambiente original</label><label for="volumeControl">Volume <input id="volumeControl" type="range" min="0" max="100" value="45"></label></div></details></div>
@@ -161,8 +176,8 @@ h1{color:#84620e}
 
 <section class="card intro">
  <div class="mascot-row">
-  <img class="mascot-photo" src="./assets/pipito-retrato.svg" alt="Pipito, mascote oficial">
-  <div class="speech" id="speech">Olá! Sou o Pipito. Vamos descobrir o que o acaso preparou?</div>
+  <img class="mascot-photo" src="./assets/pipito-retrato-v3.png" alt="Pipito, calopsita cinza de topete amarelo e bochechas laranjas">
+  <div class="speech" id="speech" aria-live="polite">Olá! Sou o Pipito. Vamos descobrir o que o acaso preparou?</div>
  </div>
  <div class="small" style="align-self:center">Escolha uma máquina e toque em <b>GIRAR</b>. Os botões são grandes e o resultado aparece em seis espaços.</div>
 </section>
@@ -179,7 +194,7 @@ h1{color:#84620e}
  <div class="leftcol">
   <section class="card machine-card" id="machineCard">
    <div class="machine-head"><strong id="machineTitle">GLOBO MECÂNICO</strong><span id="machineSubtitle">Visão direta do interior · 60 dezenas</span></div>
-   <div class="globe-stage" id="globeStage"><img class="globe-mascot" src="./assets/pipito-globo.svg" alt="Pipito observando o globo por trás"><canvas id="globeCanvas" aria-label="Globo esférico com 60 bolas numeradas"></canvas></div>
+   <div class="globe-stage" id="globeStage"><img class="globe-mascot" id="globeMascot" src="./assets/pipito-calmo-v3.png" data-idle="./assets/pipito-calmo-v3.png" data-excited="./assets/pipito-globo-v3.png" alt="Pipito observa o sorteio atrás do globo"><canvas id="globeCanvas" aria-label="Globo esférico com 60 bolas numeradas"></canvas></div>
    <div class="globe-plinth" id="globePlinth">PEPITO · A CALOPSITA DA SORTE</div>
    <div class="crystal-stage hidden" id="crystalStage">
     <div class="crystal-orb" id="crystalOrb"><canvas id="crystalCanvas"></canvas><div class="crystal-number" id="crystalNumber">33</div></div>
@@ -238,7 +253,7 @@ h1{color:#84620e}
   </section>
 
   <section class="card tipbox">
-   <img class="tipbird" src="./assets/pipito-curioso.svg" alt="Pipito apresentando uma curiosidade">
+   <img class="tipbird" src="./assets/pipito-curioso-v3.png" alt="Pipito curioso apresentando uma informação">
    <div><h3>PEPITO DESCOBRE</h3><div class="tiptext" id="tipText">Em um sorteio justo, qualquer combinação específica de seis dezenas tem a mesma probabilidade que outra.</div><button class="pill" id="newTipBtn" style="margin-top:8px">OUTRA CURIOSIDADE</button></div>
   </section>
 
@@ -270,14 +285,21 @@ h1{color:#84620e}
 <nav class="nav">
  <button id="navDraw"><b>◉</b>Sorteio</button><button id="navMethods"><b>✧</b>Métodos</button><button id="navHistory"><b>▤</b>Histórico</button><button id="navHelp"><b>?</b>Ajuda</button>
 </nav>
-<footer>PEPITO — A CALOPSITA DA SORTE · Versão 2.0 · Entretenimento, curiosidade e experimentação.</footer>
+<footer>PEPITO — A CALOPSITA DA SORTE · Versão 3.0 · Entretenimento, curiosidade e experimentação.</footer>
 </div>
 
 <script>
-/* PEPITO v1.1 — núcleo local. Sem bibliotecas externas. */
+/* Núcleo do sorteio local. Sem bibliotecas externas. */
 const $=id=>document.getElementById(id);
 const MASCOT_NAME="Pipito";
 let mode="globe",method="random",spinning=false,speed=0,draw=[],deck=[],history=loadHistory(),soundOn=false,stopTimer=null,spinInterval=null;
+function setPipitoMood(mood,restoreAfter=0){
+ const bird=$("globeMascot");if(!bird)return;
+ const source=(mood==="spin"||mood==="celebrate")?bird.dataset.excited:bird.dataset.idle;
+ if(source&&bird.getAttribute("src")!==source)bird.setAttribute("src",source);
+ document.body.dataset.pipito=mood;
+ if(restoreAfter)setTimeout(()=>{if(!spinning)setPipitoMood("idle")},restoreAfter);
+}
 const methodInfo={
  random:["Aleatório puro","Sorteio uniforme de referência. O número é selecionado com aleatoriedade criptográfica quando disponível."],
  stats:["Oráculo estatístico","Experiência inspirada em frequências e atrasos históricos. Sem histórico oficial conectado, não alegamos tendências reais."],
@@ -341,7 +363,8 @@ function setMode(m){
  $("machineTitle").textContent=m==="globe"?"GLOBO MECÂNICO":"ORÁCULO DE CRISTAL";
  $("machineSubtitle").textContent=m==="globe"?"Visão direta do interior · 60 dezenas":"Manifestação visual do método selecionado";
  $("machineCaption").textContent=m==="globe"?"As 60 bolinhas circulam dentro da esfera. Observe os números passando!": "A animação muda conforme a escola escolhida. A esfera revela a dezena após a parada.";
- if(m==="crystal")renderCrystalStyle();
+ if(m==="crystal"){renderCrystalStyle();startCrystalAnimation()}
+ else if(crystalRaf){cancelAnimationFrame(crystalRaf);crystalRaf=0}
 }
 $("globeChoice").onclick=()=>setMode("globe");$("crystalChoice").onclick=()=>setMode("crystal");
 
@@ -353,29 +376,29 @@ function updateResults(){
 function status(t){$("statusPill").textContent=t}
 function buttons(){ $("spinBtn").disabled=spinning||draw.length>=6;$("fasterBtn").disabled=!spinning;$("slowerBtn").disabled=!spinning;$("stopBtn").disabled=!spinning}
 function startSpin(){
- if(spinning||draw.length>=6)return;document.body.classList.add("pipito-excited");setTimeout(()=>document.body.classList.remove("pipito-excited"),850);pepitoSound("start");
+ if(spinning||draw.length>=6)return;setPipitoMood("spin");pepitoSound("start");
  if(draw.length===0)startDeck();
  spinning=true;speed=45;buttons();status("EM MOVIMENTO");$("machineCard").classList.add("spinning");
- $("speedText").textContent="Velocidade: "+speed+"%";$("speech").textContent=mode==="globe"?"Olha como as bolinhas estão passeando!":"Estou observando as partículas se organizarem...";
+ $("speedText").textContent="Velocidade: "+speed+"%";$("speech").textContent=mode==="globe"?"Vamos, bolinhas! Estou de olho em vocês!":"Estou observando as partículas se organizarem...";
  if(mode==="crystal"){$("crystalNumber").classList.remove("show");$("crystalNumber").textContent="";renderCrystalStyle()}
  spinInterval=setInterval(()=>{if(spinning){speed=Math.min(100,speed+1);$("speedText").textContent="Velocidade: "+speed+"%"}},180);
 }
 function stopSpin(){
- if(!spinning)return;document.body.classList.add("pipito-calm");setTimeout(()=>document.body.classList.remove("pipito-calm"),850);pepitoSound("stop");
- spinning=false;clearInterval(spinInterval);$("machineCard").classList.remove("spinning");status("DESACELERANDO");speed=0;$("speedText").textContent="Velocidade: 0%";buttons();
+ if(!spinning)return;setPipitoMood("anticipate");pepitoSound("stop");
+ spinning=false;clearInterval(spinInterval);$("machineCard").classList.remove("spinning");status("DESACELERANDO");speed=0;$("speedText").textContent="Velocidade: 0%";buttons();$("speech").textContent="Estou curioso… qual dezena vai aparecer?";
  stopTimer=setTimeout(extract,1000);
 }
 function extract(){
  if(draw.length>=6)return;
- const n=deck.shift();draw.push(n);document.body.classList.add("pipito-pop");setTimeout(()=>document.body.classList.remove("pipito-pop"),700);pepitoSound("extract");updateResults();
+ const n=deck.shift();draw.push(n);setPipitoMood("celebrate",1450);pepitoSound("extract");updateResults();
  if(mode==="crystal"){$("crystalNumber").textContent=String(n).padStart(2,"0");$("crystalNumber").classList.add("show")}
  status("DEZENA "+String(n).padStart(2,"0")+" EXTRAÍDA");
- const sayings=["Uma bolinha ganhou liberdade!","Mais uma manifestação do acaso!","Pipito está de olho na próxima!","O laboratório registrou a extração!","O acaso continua sua dança!"];
+ const sayings=[`Oba! Saiu a dezena ${String(n).padStart(2,"0")}!`,`${String(n).padStart(2,"0")} chegou! Pipito está de olho na próxima.`,`Mais uma do acaso: ${String(n).padStart(2,"0")}. Vamos com calma!`,`A dezena ${String(n).padStart(2,"0")} foi extraída. Que animação!`,`Olha só: ${String(n).padStart(2,"0")} apareceu no globo!`];
  $("speech").textContent=sayings[(draw.length-1)%sayings.length];
  if(draw.length===6){
   status("SEIS DEZENAS EXTRAÍDAS!");
   history.unshift({date:new Date().toISOString(),mode,method:mode==="globe"?"Aleatório uniforme":method,numbers:[...draw]});history=history.slice(0,100);saveHistory();updateHistory();
-  $("speech").textContent="Missão cumprida! As seis bolinhas já estão na bandeja.";
+  $("speech").textContent="Oba! As seis dezenas foram extraídas. O acaso não prevê o próximo sorteio.";
  }else{setTimeout(()=>{if(!spinning)status("PRONTO PARA A PRÓXIMA BOLINHA")},900)}
  buttons();
 }
@@ -384,6 +407,7 @@ $("fasterBtn").onclick=()=>{speed=Math.min(100,speed+15);$("speedText").textCont
 $("slowerBtn").onclick=()=>{speed=Math.max(10,speed-15);$("speedText").textContent="Velocidade: "+speed+"%"};
 $("newDrawBtn").onclick=()=>{
  spinning=false;clearInterval(spinInterval);clearTimeout(stopTimer);$("machineCard").classList.remove("spinning");draw=[];deck=[];speed=0;
+ setPipitoMood("idle");
  $("crystalNumber").classList.remove("show");$("crystalNumber").textContent="";updateResults();status("PRONTO PARA GIRAR");$("speedText").textContent="Velocidade: 0%";buttons();
  $("speech").textContent="Tudo pronto para uma nova experiência. Boa sorte!";
 };
@@ -393,13 +417,13 @@ function updateHistory(){
  $("historyText").innerHTML=history.length+" sorteio(s) salvo(s) neste aparelho.<br><span style='color:#e9d28a'>Último: "+history[0].numbers.map(n=>String(n).padStart(2,"0")).join(" · ")+"</span>";
 }
 $("exportBtn").onclick=()=>{
- const blob=new Blob([JSON.stringify({app:"PEPITO",version:"2.0",history},null,2)],{type:"application/json"});
+  const blob=new Blob([JSON.stringify({app:"PEPITO",version:"3.0",history},null,2)],{type:"application/json"});
  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="pepito-historico.json";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
 };
 $("clearHistoryBtn").onclick=()=>{if(confirm("Apagar o histórico salvo neste aparelho?")){history=[];saveHistory();updateHistory()}};
 function help(){alert("COMO USAR O PEPITO\n\n1. Escolha Globo Mecânico ou Oráculo de Cristal.\n2. Escolha uma escola do Código 33, se desejar.\n3. Toque em GIRAR.\n4. Toque em PARAR / EXTRAIR.\n5. Repita até completar seis dezenas.\n6. NOVO SORTEIO começa uma nova rodada.\n\nO Globo Mecânico usa sorteio uniforme. Os métodos experimentais são explorações simbólicas e não preveem resultados oficiais.")}
 $("helpBtn").onclick=$("navHelp").onclick=help;
-$("settingsBtn").onclick=()=>alert("CONFIGURAÇÕES\n\nEsta versão prioriza botões grandes, contraste alto e navegação simples. Preferências de som, tamanho de texto e consultas meteorológicas serão adicionadas nas próximas etapas.");
+$("settingsBtn").onclick=()=>alert("CONFIGURAÇÕES\n\nUse o botão musical para ativar ou silenciar os efeitos. No menu ♫, você pode ativar a melodia ambiente e ajustar o volume. O clima é consultado somente quando você informa uma cidade.");
 $("navDraw").onclick=()=>window.scrollTo({top:0,behavior:"smooth"});
 $("navMethods").onclick=()=>$("methods").scrollIntoView({behavior:"smooth",block:"center"});
 $("navHistory").onclick=()=>$("historyText").scrollIntoView({behavior:"smooth",block:"center"});
@@ -423,120 +447,104 @@ function updateClock(){
 }
 setInterval(updateClock,30000);updateClock();updateHistory();
 
-/* Globo 3D aproximado: 60 esferas em volume, gravidade, impulso e colisões elásticas. */
+/* Globo 3D estilizado: esferas dentro do casco, com projeção e camadas de profundidade. */
 const gc=$("globeCanvas"),gctx=gc.getContext("2d");
-let balls=[],lastTime=0;
-const ballColors={0:"#eee8d8",1:"#e45b54",2:"#f4cb36",3:"#65a66b",4:"#9b785a",5:"#4b91d0",6:"#e68bb5",7:"#33383b",8:"#aab0b2",9:"#e88945"};
-const SPHERE_R=.92, BALL_R=.062, REST=.78;
+let balls=[],lastTime=0,spinEnergy=0;
+const ballColors=["#f1ede2","#d95750","#e4bf42","#79a27b","#a27c5c","#5689b9","#ce81a3","#555c63","#b9bfbe","#db8745"];
+const ballEdgeColors=["#e1dcd1","#cc514b","#d5b33e","#709673","#937257","#4e80aa","#bc7796","#4c5258","#adb3b2","#cc7e40"];
+const SPHERE_R=.92,BALL_R=.055,REST=.86;
 function makeBalls(){
- balls=Array.from({length:60},(_,i)=>{
-  // Rejection sampling inside a sphere; start positions never overlap.
+ balls=[];
+ for(let i=0;i<60;i++){
   let p,tries=0;
   do{
-   p={x:(Math.random()*2-1)*.76,y:(Math.random()*2-1)*.76,z:(Math.random()*2-1)*.76};
-   tries++;
-  }while((Math.hypot(p.x,p.y,p.z)>SPHERE_R-BALL_R || balls.some(b=>Math.hypot(p.x-b.x,p.y-b.y,p.z-b.z)<BALL_R*2.03))&&tries<5000);
-  return {n:i+1,...p,vx:(Math.random()-.5)*.012,vy:(Math.random()-.5)*.012,vz:(Math.random()-.5)*.012,r:BALL_R};
- });
+   const z=Math.random()*1.7-.85,angle=Math.random()*Math.PI*2,r=Math.sqrt(Math.random()*.72);
+   p={x:r*Math.cos(angle),y:z,z:r*Math.sin(angle)};tries++;
+  }while((Math.hypot(p.x,p.y,p.z)>SPHERE_R-BALL_R||balls.some(b=>Math.hypot(p.x-b.x,p.y-b.y,p.z-b.z)<BALL_R*2.02))&&tries<5000);
+  balls.push({n:i+1,...p,vx:(Math.random()-.5)*.002,vy:(Math.random()-.5)*.002,vz:(Math.random()-.5)*.002,r:BALL_R});
+ }
 }
 function resizeGlobe(){
- const r=gc.getBoundingClientRect(),dpr=Math.min(devicePixelRatio||1,2);
+ const r=gc.getBoundingClientRect(),dpr=Math.min(window.devicePixelRatio||1,2);
  gc.width=Math.max(1,Math.round(r.width*dpr));gc.height=Math.max(1,Math.round(r.height*dpr));
  gctx.setTransform(dpr,0,0,dpr,0,0);
 }
 window.addEventListener("resize",resizeGlobe);if("ResizeObserver"in window)new ResizeObserver(resizeGlobe).observe(gc.parentElement);resizeGlobe();makeBalls();
-
 function collideBalls(a,b){
- let dx=b.x-a.x,dy=b.y-a.y,dz=b.z-a.z;
- let d=Math.hypot(dx,dy,dz),min=a.r+b.r;
- if(d<min && d>.00001){
-  let nx=dx/d,ny=dy/d,nz=dz/d,over=(min-d)*.5;
-  a.x-=nx*over;a.y-=ny*over;a.z-=nz*over;
-  b.x+=nx*over;b.y+=ny*over;b.z+=nz*over;
-  let rel=(b.vx-a.vx)*nx+(b.vy-a.vy)*ny+(b.vz-a.vz)*nz;
-  if(rel<0){
-   let impulse=-(1+REST)*rel*.5;
-   a.vx-=impulse*nx;a.vy-=impulse*ny;a.vz-=impulse*nz;
-   b.vx+=impulse*nx;b.vy+=impulse*ny;b.vz+=impulse*nz;
-  }
+ const dx=b.x-a.x,dy=b.y-a.y,dz=b.z-a.z,d=Math.hypot(dx,dy,dz),min=a.r+b.r;
+ if(d<min&&d>.00001){
+  const nx=dx/d,ny=dy/d,nz=dz/d,over=(min-d)*.5;
+  a.x-=nx*over;a.y-=ny*over;a.z-=nz*over;b.x+=nx*over;b.y+=ny*over;b.z+=nz*over;
+  const rel=(b.vx-a.vx)*nx+(b.vy-a.vy)*ny+(b.vz-a.vz)*nz;
+  if(rel<0){const impulse=-(1+REST)*rel*.5;a.vx-=impulse*nx;a.vy-=impulse*ny;a.vz-=impulse*nz;b.vx+=impulse*nx;b.vy+=impulse*ny;b.vz+=impulse*nz}
  }
 }
 function drawGlobe(t){
- const w=gc.clientWidth,h=gc.clientHeight,cx=w/2,cy=h/2,R=Math.min(w,h)*.405;
+ const w=gc.clientWidth,h=gc.clientHeight;
+ if(!w||!h){requestAnimationFrame(drawGlobe);return}
+ const cx=w/2,cy=h/2,R=Math.min(w,h)*.445,focal=4.2,projectionScale=R*Math.sqrt(focal*focal-SPHERE_R*SPHERE_R)/(focal*SPHERE_R);
+ const project=(x,y,z)=>{const k=projectionScale*focal/(focal-z);return{x:cx+x*k,y:cy+y*k,k}};
  gctx.clearRect(0,0,w,h);
- const dt=Math.min((t-lastTime)/16.7||1,1.7);lastTime=t;
- const active=spinning, agitation=active?(0.008+speed*.00016):.00022;
- // A little 3D tumble of the complete ball cloud while the globe turns.
- const rot=active?.006+speed*.00008:.0008,cr=Math.cos(rot*dt),sr=Math.sin(rot*dt);
+ const dt=Math.min(Math.max((t-lastTime)/16.7||1,.35),1.7);lastTime=t;
+ spinEnergy+=(Math.max(0,spinning?Math.max(.38,speed/100):0)-spinEnergy)*(spinning?.06:.035);
+ const swirl=.000025+spinEnergy*.0012,agitation=.000006+spinEnergy*.00072;
  for(const b of balls){
-  // 3D rotation around the globe axis.
-  const x=b.x*cr-b.z*sr,z=b.x*sr+b.z*cr;b.x=x;b.z=z;
-  // Gravity points down; spinning airflow adds irregular turbulence and lift.
-  b.vy+=active?.0024*dt:.000025*dt;
-  b.vx+=Math.sin(t*.0017+b.n*1.73)*agitation*dt;
-  b.vy+=Math.sin(t*.0011+b.n*2.07)*agitation*.65*dt;
-  b.vz+=Math.cos(t*.0013+b.n*2.31)*agitation*dt;
-  if(active)b.vy-=.0036*dt;
-  const damping=active?.997:.985;b.vx*=damping;b.vy*=damping;b.vz*=damping;
+  b.vx+=-b.z*swirl+Math.sin(t*.0017+b.n*1.73)*agitation*dt;
+  b.vz+= b.x*swirl+Math.cos(t*.0013+b.n*2.31)*agitation*dt;
+  b.vy+=(spinning?.00022:0)+Math.sin(t*.0011+b.n*2.07)*agitation*.55*dt;
+  const damping=spinning?.998:.986;b.vx*=damping;b.vy*=damping;b.vz*=damping;
   b.x+=b.vx*dt;b.y+=b.vy*dt;b.z+=b.vz*dt;
   const d=Math.hypot(b.x,b.y,b.z),max=SPHERE_R-b.r;
-  if(d>max){
-   const nx=b.x/d,ny=b.y/d,nz=b.z/d;
-   b.x=nx*max;b.y=ny*max;b.z=nz*max;
-   const vn=b.vx*nx+b.vy*ny+b.vz*nz;
-   if(vn>0){b.vx-=(1.35*vn)*nx;b.vy-=(1.35*vn)*ny;b.vz-=(1.35*vn)*nz}
+  if(d>max){const nx=b.x/d,ny=b.y/d,nz=b.z/d;b.x=nx*max;b.y=ny*max;b.z=nz*max;const vn=b.vx*nx+b.vy*ny+b.vz*nz;if(vn>0){b.vx-=(1+REST)*vn*nx;b.vy-=(1+REST)*vn*ny;b.vz-=(1+REST)*vn*nz}}
+ }
+ for(let pass=0;pass<2;pass++)for(let i=0;i<balls.length;i++)for(let j=i+1;j<balls.length;j++)collideBalls(balls[i],balls[j]);
+
+ gctx.save();gctx.beginPath();gctx.arc(cx,cy,R,0,Math.PI*2);gctx.clip();
+ const glass=gctx.createRadialGradient(cx-R*.35,cy-R*.42,2,cx,cy,R*1.1);glass.addColorStop(0,"#fff9");glass.addColorStop(.4,"#fff5");glass.addColorStop(1,"#dfc36b10");gctx.fillStyle=glass;gctx.fillRect(cx-R,cy-R,R*2,R*2);
+ function gridPath(point,start,end,steps,color,width){
+  gctx.beginPath();for(let i=0;i<=steps;i++){const a=start+(end-start)*i/steps,p=project(...point(a));if(i===0)gctx.moveTo(p.x,p.y);else gctx.lineTo(p.x,p.y)}
+  gctx.strokeStyle=color;gctx.lineWidth=width;gctx.lineCap="round";gctx.stroke();
+ }
+ function drawHemisphere(front){
+  const color=front?"#d5b864a8":"#b99b5b40";
+  for(let k=0;k<12;k++){
+   const lon=k*Math.PI/6;if((Math.cos(lon)>0)!==front)continue;
+   gridPath(phi=>[SPHERE_R*Math.sin(phi)*Math.sin(lon),SPHERE_R*Math.cos(phi),SPHERE_R*Math.sin(phi)*Math.cos(lon)],0,Math.PI,52,color,front?1.15:.85);
+  }
+  for(let k=-3;k<=3;k++){
+   const yy=k*.23,rr=Math.sqrt(SPHERE_R*SPHERE_R-yy*yy);
+   gridPath(a=>[rr*Math.sin(a),yy,rr*Math.cos(a)],front?-Math.PI/2:Math.PI/2,front?Math.PI/2:Math.PI*1.5,38,color,front?1.15:.85);
   }
  }
- // Several collision passes approximate billiard-ball impacts inside a spherical shell.
- for(let pass=0;pass<3;pass++)for(let i=0;i<balls.length;i++)for(let j=i+1;j<balls.length;j++)collideBalls(balls[i],balls[j]);
-
- // Glass globe glow and transparent shell.
- const halo=gctx.createRadialGradient(cx,cy,R*.12,cx,cy,R*1.18);
- halo.addColorStop(0,"#f4cb3620");halo.addColorStop(.72,"#f4cb360a");halo.addColorStop(1,"#00000000");
- gctx.fillStyle=halo;gctx.fillRect(0,0,w,h);
-
- // Render the cage first, so the bird behind the transparent globe and the balls remain visible.
- gctx.save();gctx.translate(cx,cy);
- gctx.lineWidth=2.2;gctx.strokeStyle="#e7c477d9";
- for(let k=0;k<9;k++){
-  const a=Math.PI*k/9;
-  gctx.beginPath();gctx.ellipse(0,0,R*Math.abs(Math.sin(a)),R,0,0,Math.PI*2);gctx.stroke();
- }
- for(let k=-3;k<=3;k++){
-  const yy=k*.24,rr=Math.sqrt(1-yy*yy)*R;
-  gctx.beginPath();gctx.ellipse(0,yy*R,rr,rr*.25,0,0,Math.PI*2);gctx.stroke();
- }
- gctx.beginPath();gctx.arc(0,0,R,0,Math.PI*2);gctx.lineWidth=5;gctx.strokeStyle="#f0cf83";gctx.stroke();
- gctx.restore();
-
- // Perspective projection: nearer balls appear larger and overlap farther balls.
- const focal=3.0,sorted=[...balls].sort((a,b)=>a.z-b.z);
+ drawHemisphere(false);
+ const sorted=[...balls].sort((a,b)=>a.z-b.z);
  for(const b of sorted){
-  const persp=focal/(focal-b.z*.72),x=cx+b.x*R*.92*persp,y=cy+b.y*R*.92*persp;
-  const rad=b.r*R*persp*.92,base=ballColors[b.n%10]||"#e9e5d9";
-  gctx.save();gctx.shadowColor="#000a";gctx.shadowBlur=5;gctx.shadowOffsetY=3;
-  const grad=gctx.createRadialGradient(x-rad*.38,y-rad*.43,1,x,y,rad);
-  grad.addColorStop(0,"#ffffff");grad.addColorStop(.22,base);grad.addColorStop(1,"#292d30");
-  gctx.fillStyle=grad;gctx.beginPath();gctx.arc(x,y,rad,0,Math.PI*2);gctx.fill();
-  gctx.shadowBlur=0;gctx.strokeStyle="#fff9";gctx.lineWidth=1;gctx.stroke();
-  gctx.fillStyle="#17191a";gctx.font=`900 ${Math.max(7,rad*.82)}px system-ui`;gctx.textAlign="center";gctx.textBaseline="middle";
-  gctx.fillText(String(b.n).padStart(2,"0"),x,y+.5);gctx.restore();
+  const p=project(b.x,b.y,b.z),rad=b.r*p.k,colorIndex=b.n%10,base=ballColors[colorIndex],dark=colorIndex===7;
+  const grad=gctx.createRadialGradient(p.x-rad*.34,p.y-rad*.4,Math.max(.2,rad*.03),p.x,p.y,rad);
+  grad.addColorStop(0,"#fff");grad.addColorStop(.2,base);grad.addColorStop(.78,base);grad.addColorStop(1,ballEdgeColors[colorIndex]);
+  gctx.fillStyle=grad;gctx.beginPath();gctx.arc(p.x,p.y,rad,0,Math.PI*2);gctx.fill();
+  gctx.fillStyle="#ffffff5c";gctx.beginPath();gctx.ellipse(p.x-rad*.28,p.y-rad*.3,rad*.13,rad*.09,-.45,0,Math.PI*2);gctx.fill();
+  gctx.fillStyle=dark?"#fffdf4":"#262821";gctx.font=`750 ${Math.max(7.5,rad*.9)}px system-ui, sans-serif`;gctx.textAlign="center";gctx.textBaseline="middle";gctx.shadowColor="transparent";gctx.shadowBlur=0;gctx.shadowOffsetX=0;gctx.shadowOffsetY=0;
+  gctx.fillText(String(b.n).padStart(2,"0"),p.x,p.y+.25);
  }
- // Glass reflections and metallic shine.
- const shine=gctx.createRadialGradient(cx-R*.38,cy-R*.48,1,cx-R*.25,cy-R*.35,R*.85);
- shine.addColorStop(0,"#ffffff40");shine.addColorStop(.3,"#ffffff10");shine.addColorStop(1,"#ffffff00");
- gctx.fillStyle=shine;gctx.beginPath();gctx.arc(cx,cy,R,0,Math.PI*2);gctx.fill();
+ drawHemisphere(true);
+ const glassShine=gctx.createLinearGradient(cx-R*.65,cy-R*.7,cx+R*.55,cy+R*.8);glassShine.addColorStop(0,"#ffffff20");glassShine.addColorStop(.22,"#ffffff08");glassShine.addColorStop(.68,"#ffffff00");glassShine.addColorStop(1,"#e5c97512");
+ gctx.fillStyle=glassShine;gctx.beginPath();gctx.arc(cx,cy,R,0,Math.PI*2);gctx.fill();gctx.restore();
+ const rim=gctx.createLinearGradient(cx-R,cy-R,cx+R,cy+R);rim.addColorStop(0,"#f0d98f");rim.addColorStop(.48,"#c8a954");rim.addColorStop(1,"#efd487");
+ gctx.beginPath();gctx.arc(cx,cy,R,0,Math.PI*2);gctx.lineWidth=4;gctx.strokeStyle=rim;gctx.stroke();
+ gctx.beginPath();gctx.arc(cx-R*.05,cy-R*.04,R*.982,-Math.PI*.8,-Math.PI*.22);gctx.lineWidth=1;gctx.strokeStyle="#ffffff70";gctx.stroke();
  requestAnimationFrame(drawGlobe);
 }
 requestAnimationFrame(drawGlobe);
 
 /* Crystal visual styles: each method has a distinct procedural particle language. */
-const cc=$("crystalCanvas"),cctx=cc.getContext("2d");let cparticles=[],cframe=0;
+const cc=$("crystalCanvas"),cctx=cc.getContext("2d");let cparticles=[],cframe=0,crystalRaf=0;
 function resizeCrystal(){const r=cc.getBoundingClientRect(),dpr=Math.min(devicePixelRatio||1,2);cc.width=Math.max(1,Math.round(r.width*dpr));cc.height=Math.max(1,Math.round(r.height*dpr));cctx.setTransform(dpr,0,0,dpr,0,0);if(typeof seedCrystal==="function")seedCrystal()}
 window.addEventListener("resize",resizeCrystal);if("ResizeObserver"in window)new ResizeObserver(resizeCrystal).observe(cc.parentElement);resizeCrystal();
-function seedCrystal(){const w=cc.clientWidth,h=cc.clientHeight;cparticles=Array.from({length:method==="astral"?96:method==="chaos"?90:method==="stats"?82:86},(_,i)=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*1.2,vy:(Math.random()-.5)*1.2,a:Math.random()*6.28,r:Math.random()*2.5+0.7,orbit:Math.random()*w*.4+10}));}
+function seedCrystal(){const w=cc.clientWidth,h=cc.clientHeight;if(!w||!h){cparticles=[];return}const count=Math.min(w<240?54:72,method==="astral"?76:method==="chaos"?70:method==="stats"?66:68);cparticles=Array.from({length:count},(_,i)=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*1.2,vy:(Math.random()-.5)*1.2,a:Math.random()*6.28,r:Math.random()*2.1+0.6,orbit:Math.random()*w*.4+10}));}
 function renderCrystalStyle(){seedCrystal()}
 function crystalFrame(t){
+ crystalRaf=0;if(document.hidden||mode!=="crystal")return;
  const w=cc.clientWidth,h=cc.clientHeight,cx=w/2,cy=h/2;cctx.clearRect(0,0,w,h);cframe++;
  const colors={random:["#ffd66e","#6de1ff"],stats:["#58d5ff","#f4cb36"],numerology:["#e6b4ff","#ffe27b"],chaos:["#ff8a5b","#66e6ff"],psychology:["#7ce6c0","#ffcf76"],balance:["#f7e3a0","#9ee1d4"],astral:["#b5a4ff","#f5c9ff"],council:["#f4cb36","#61ddff"]}[method]||["#f4cb36","#61ddff"];
  if(!cparticles.length)seedCrystal();
@@ -579,48 +587,54 @@ function crystalFrame(t){
   cctx.beginPath();cctx.arc(x,y,1.1+(i%3)*.55,0,Math.PI*2);
   cctx.fillStyle=colors[i%2]+"cc";cctx.shadowColor=colors[i%2];cctx.shadowBlur=13;cctx.fill();cctx.shadowBlur=0;
  }
- if(!document.hidden)requestAnimationFrame(crystalFrame);
+ if(!document.hidden&&mode==="crystal")crystalRaf=requestAnimationFrame(crystalFrame);
 }
-seedCrystal();requestAnimationFrame(crystalFrame);
-document.addEventListener("visibilitychange",()=>{if(!document.hidden)requestAnimationFrame(crystalFrame)});
+function startCrystalAnimation(){if(document.hidden||mode!=="crystal"||crystalRaf)return;crystalRaf=requestAnimationFrame(crystalFrame)}
+seedCrystal();
+document.addEventListener("visibilitychange",()=>{if(!document.hidden)startCrystalAnimation();else if(crystalRaf){cancelAnimationFrame(crystalRaf);crystalRaf=0}});
 
 buttons();updateResults();
 
-/* PEPITO 2.0: previsão por cidade e sons originais, sempre iniciados pelo usuário. */
-let pepitoAudio=null,pepitoMuted=true,pepitoVolume=.45;
+/* PEPITO 3.0: previsão por cidade e sons originais, sempre iniciados pelo usuário. */
+let pepitoAudio=null,pepitoMuted=true,pepitoVolume=.45,pepitoMaster=null;
+function initPepitoAudio(){
+ pepitoAudio=pepitoAudio||new (window.AudioContext||window.webkitAudioContext)();
+ if(!pepitoMaster){pepitoMaster=pepitoAudio.createGain();pepitoMaster.gain.value=pepitoMuted?0:1;pepitoMaster.connect(pepitoAudio.destination)}
+ if(pepitoAudio.state==="suspended")pepitoAudio.resume();return pepitoAudio;
+}
 function pepitoSound(kind){
- if(pepitoMuted)return;
+ if(pepitoMuted||pepitoVolume<=0)return;
  try{
-  pepitoAudio=pepitoAudio||new (window.AudioContext||window.webkitAudioContext)();
-  if(pepitoAudio.state==="suspended")pepitoAudio.resume();
+  initPepitoAudio();
   const notes=kind==="start"?[392,523,659]:kind==="stop"?[523,440]:[784,988];
-  notes.forEach((f,i)=>{const o=pepitoAudio.createOscillator(),g=pepitoAudio.createGain();o.type="sine";o.frequency.value=f;g.gain.setValueAtTime(.0001,pepitoAudio.currentTime+i*.08);g.gain.exponentialRampToValueAtTime(.055*pepitoVolume,pepitoAudio.currentTime+i*.08+.015);g.gain.exponentialRampToValueAtTime(.0001,pepitoAudio.currentTime+i*.08+.16);o.connect(g).connect(pepitoAudio.destination);o.start(pepitoAudio.currentTime+i*.08);o.stop(pepitoAudio.currentTime+i*.08+.17)});
+  notes.forEach((f,i)=>{const o=pepitoAudio.createOscillator(),g=pepitoAudio.createGain();o.type="sine";o.frequency.value=f;g.gain.setValueAtTime(.0001,pepitoAudio.currentTime+i*.08);g.gain.exponentialRampToValueAtTime(.055*pepitoVolume,pepitoAudio.currentTime+i*.08+.015);g.gain.exponentialRampToValueAtTime(.0001,pepitoAudio.currentTime+i*.08+.16);o.connect(g).connect(pepitoMaster);o.start(pepitoAudio.currentTime+i*.08);o.stop(pepitoAudio.currentTime+i*.08+.17)});
  }catch(e){console.info("Áudio não disponível neste navegador")}
 }
 const soundButton=document.getElementById("soundBtn");
-soundButton.addEventListener("click",()=>{pepitoMuted=!pepitoMuted;soundButton.textContent=pepitoMuted?"♪":"♫";soundButton.setAttribute("aria-label",pepitoMuted?"Ativar som":"Silenciar sons");soundButton.setAttribute("aria-pressed",String(!pepitoMuted));if(!pepitoMuted){pepitoSound("extract");document.getElementById("speech").textContent="Ativei meu assobio original! Você pode silenciar quando quiser."}});
+soundButton.addEventListener("click",()=>{pepitoMuted=!pepitoMuted;soundButton.textContent=pepitoMuted?"♪":"♫";soundButton.setAttribute("aria-label",pepitoMuted?"Ativar efeitos sonoros":"Silenciar todos os sons");soundButton.setAttribute("aria-pressed",String(!pepitoMuted));if(pepitoAudio&&pepitoMaster)pepitoMaster.gain.setTargetAtTime(pepitoMuted?0:1,pepitoAudio.currentTime,.015);if(pepitoMuted){clearTimeout(pepitoMusicTimer);pepitoMusicTimer=0}else{pepitoSound("extract");if(pepitoMusicOn)pepitoMusicPhrase();document.getElementById("speech").textContent="Ativei meu assobio original! Você pode silenciar quando quiser."}});
 let pepitoMusicOn=false,pepitoMusicTimer=0;
 const musicToggle=document.getElementById("musicToggle"),volumeControl=document.getElementById("volumeControl");
-volumeControl.addEventListener("input",()=>{pepitoVolume=Number(volumeControl.value)/100});
+volumeControl.addEventListener("input",()=>{pepitoVolume=Number(volumeControl.value)/100;if(pepitoAudio&&pepitoMaster)pepitoMaster.gain.setTargetAtTime(pepitoMuted||pepitoVolume<=0?0:1,pepitoAudio.currentTime,.015);if(pepitoVolume<=0){clearTimeout(pepitoMusicTimer);pepitoMusicTimer=0}else if(pepitoMusicOn&&!pepitoMuted&&!pepitoMusicTimer)pepitoMusicPhrase()});
 function pepitoMusicPhrase(){
- if(!pepitoMusicOn||!pepitoAudio)return;
+ pepitoMusicTimer=0;
+ if(!pepitoMusicOn||pepitoMuted||pepitoVolume<=0||!pepitoAudio)return;
  const phrase=[659,784,988,784,698,880,1047,880],base=pepitoAudio.currentTime;
- phrase.forEach((f,i)=>{const o=pepitoAudio.createOscillator(),g=pepitoAudio.createGain();o.type="sine";o.frequency.value=f;g.gain.setValueAtTime(.0001,base+i*.22);g.gain.exponentialRampToValueAtTime(.018*pepitoVolume,base+i*.22+.025);g.gain.exponentialRampToValueAtTime(.0001,base+i*.22+.19);o.connect(g).connect(pepitoAudio.destination);o.start(base+i*.22);o.stop(base+i*.22+.2)});
+ phrase.forEach((f,i)=>{const o=pepitoAudio.createOscillator(),g=pepitoAudio.createGain();o.type="sine";o.frequency.value=f;g.gain.setValueAtTime(.0001,base+i*.22);g.gain.exponentialRampToValueAtTime(.018*pepitoVolume,base+i*.22+.025);g.gain.exponentialRampToValueAtTime(.0001,base+i*.22+.19);o.connect(g).connect(pepitoMaster);o.start(base+i*.22);o.stop(base+i*.22+.2)});
  pepitoMusicTimer=setTimeout(pepitoMusicPhrase,2600);
 }
-musicToggle.addEventListener("change",()=>{pepitoMusicOn=musicToggle.checked;if(pepitoMusicOn){pepitoAudio=pepitoAudio||new (window.AudioContext||window.webkitAudioContext)();pepitoAudio.resume();pepitoMusicPhrase()}else clearTimeout(pepitoMusicTimer)});
+musicToggle.addEventListener("change",()=>{pepitoMusicOn=musicToggle.checked;if(pepitoMusicOn){initPepitoAudio();pepitoMusicPhrase()}else{clearTimeout(pepitoMusicTimer);pepitoMusicTimer=0}});
 const weatherBtn=document.getElementById("weatherBtn"),weatherCity=document.getElementById("weatherCity");
 weatherBtn.addEventListener("click",async()=>{
  const city=weatherCity.value.trim(),value=document.getElementById("weatherValue"),note=document.getElementById("weatherText");
  if(city.length<2){note.textContent="Digite o nome de uma cidade para consultar.";weatherCity.focus();return}
  weatherBtn.disabled=true;note.textContent="Buscando a cidade…";
  try{
-  const geo=await fetch("https://geocoding-api.open-meteo.com/v1/search?"+new URLSearchParams({name:city,count:"1",language:"pt",format:"json"}));
+  const geo=await fetch("https://geocoding-api.open-meteo.com/v1/search?"+new URLSearchParams({name:city,count:"5",language:"pt",format:"json",countryCode:"BR"}));
   if(!geo.ok)throw Error("Busca de cidade indisponível");
   const place=(await geo.json()).results?.[0];if(!place)throw Error("Cidade não encontrada. Tente incluir o estado.");
   const api=await fetch("https://api.open-meteo.com/v1/forecast?"+new URLSearchParams({latitude:place.latitude,longitude:place.longitude,current:"temperature_2m,relative_humidity_2m,apparent_temperature,weather_code",timezone:"auto"}));
   if(!api.ok)throw Error("Previsão indisponível");
-  const data=await api.json(),cur=data.current,desc=({0:"céu limpo",1:"predominantemente limpo",2:"parcialmente nublado",3:"nublado",45:"neblina",48:"neblina com geada",51:"garoa leve",53:"garoa",55:"garoa intensa",61:"chuva leve",63:"chuva",65:"chuva forte",80:"pancadas leves",81:"pancadas",82:"pancadas fortes",95:"trovoada"})[cur.weather_code]||"condições variáveis";
+  const data=await api.json(),cur=data.current,desc=({0:"céu limpo",1:"predominantemente limpo",2:"parcialmente nublado",3:"nublado",45:"neblina",48:"neblina com geada",51:"garoa leve",53:"garoa",55:"garoa intensa",56:"garoa congelante",57:"garoa congelante intensa",61:"chuva leve",63:"chuva",65:"chuva forte",66:"chuva congelante",67:"chuva congelante intensa",71:"neve leve",73:"neve",75:"neve intensa",77:"grãos de neve",80:"pancadas leves",81:"pancadas",82:"pancadas fortes",85:"pancadas de neve leves",86:"pancadas de neve fortes",95:"trovoada",96:"trovoada com granizo leve",99:"trovoada com granizo forte"})[cur.weather_code]||"condições variáveis";
   value.textContent=Math.round(cur.temperature_2m)+"°C";note.textContent=place.name+(place.admin1?", "+place.admin1:"")+" · "+desc+" · sensação "+Math.round(cur.apparent_temperature)+"°C";
  }catch(e){value.textContent="—";note.textContent=e.message+"; tente novamente mais tarde"}
  finally{weatherBtn.disabled=false}
@@ -632,7 +646,7 @@ weatherCity.addEventListener("keydown",e=>{if(e.key==="Enter")weatherBtn.click()
 <script>
 // Registro do Service Worker: permite instalar e abrir o PEPITO offline após a primeira visita.
 if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
-  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=2.0').catch(err => console.warn('PEPITO offline indisponível:', err)));
+  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=3.0').catch(err => console.warn('PEPITO offline indisponível:', err)));
 }
 </script>
 </body>
