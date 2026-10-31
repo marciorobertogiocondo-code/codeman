@@ -1,5 +1,5 @@
-const CACHE_NAME = 'pepito-v3-9-pwa';
-const APP_SHELL = ['./','./index.html','./manifest.webmanifest','./icons/pepito-192.svg','./icons/pepito-512.svg','./assets/pipito-avatar-v4.svg','./assets/pipito-voando-v1.png','./assets/pipito-globo-v3.png','./assets/pipito-calmo-v3.png','./assets/pipito-retrato-v3.png','./assets/pipito-curioso-v3.png'];
+const CACHE_NAME = 'pepito-v3-10-pwa';
+const APP_SHELL = ['./','./index.html','./manifest.webmanifest','./icons/pepito-192.svg','./icons/pepito-512.svg','./assets/pipito-voando-v2.png','./assets/pipito-globo-v3.png','./assets/pipito-calmo-v3.png','./assets/pipito-retrato-v3.png','./assets/pipito-curioso-v3.png'];
 
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL)).then(() => self.skipWaiting()));
