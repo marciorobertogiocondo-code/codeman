@@ -138,7 +138,7 @@ h1{color:#84620e}
 @media(min-width:720px){.app{max-width:1280px}.landscape-only{gap:10px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
 
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.weather-controls{display:flex;gap:6px;margin:6px 0}.weather-controls input{width:100%;min-width:0;border:1px solid #cfc7b7;border-radius:10px;padding:9px;background:#fff;color:#263136;font:inherit}.weather-controls button{white-space:nowrap}.</style>
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.weather-controls{display:flex;gap:6px;margin:6px 0}.weather-controls input{width:100%;min-width:0;border:1px solid #cfc7b7;border-radius:10px;padding:9px;background:#fff;color:#263136;font:inherit}.weather-controls button{white-space:nowrap}.@keyframes pipitoBounce{0%,100%{transform:translateY(0) rotate(0)}40%{transform:translateY(-8px) rotate(-4deg)}70%{transform:translateY(1px) rotate(3deg)}}.globe-mascot{transition:filter .25s}body.pipito-excited .globe-mascot,body.pipito-pop .mascot-photo{animation:pipitoBounce .65s ease}body.pipito-calm .globe-mascot{filter:drop-shadow(0 0 12px #efc74d)}.tile a{color:#735510;font-weight:700}@media(prefers-reduced-motion:reduce){.globe-mascot,body.pipito-excited .globe-mascot,body.pipito-pop .mascot-photo{animation:none!important}}</style>
 
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="icon" type="image/svg+xml" href="./icons/pepito-192.svg">
@@ -156,7 +156,7 @@ h1{color:#84620e}
   <div class="brand-bird"><img src="./assets/pipito-retrato.svg" alt="Pipito, calopsita cinza de rosto amarelo"></div>
   <div><h1>PEPITO</h1><div class="tagline">A CALOPSITA DA SORTE · Um pequeno laboratório de grandes esperanças.</div></div>
  </div>
- <div class="head-actions"><button class="iconbtn" id="helpBtn" aria-label="Ajuda">?</button><button class="iconbtn" id="settingsBtn" aria-label="Configurações e som">⚙</button><button class="iconbtn" id="soundBtn" aria-label="Ativar som" aria-pressed="false">♪</button></div>
+ <div class="head-actions"><button class="iconbtn" id="helpBtn" aria-label="Ajuda">?</button><button class="iconbtn" id="settingsBtn" aria-label="Configurações e som">⚙</button><button class="iconbtn" id="soundBtn" aria-label="Ativar efeitos sonoros" aria-pressed="false">♪</button><button class="iconbtn" id="musicBtn" aria-label="Ativar música ambiente" aria-pressed="false">♫</button></div>
 </header>
 
 <section class="card intro">
@@ -248,7 +248,7 @@ h1{color:#84620e}
     <div class="tile"><div class="small">Probabilidade da Sena (aposta simples)</div><div class="value">1 em 50.063.860</div></div>
     <div class="tile"><div class="small">Dezenas no universo</div><div class="value">60</div></div>
    </div>
-   <p class="small" style="margin-top:8px">Indicadores matemáticos gerais. Frequências históricas oficiais serão conectadas numa etapa posterior.</p>
+   <p class="small" style="margin-top:8px">Indicadores matemáticos gerais. <a href="https://loterias.caixa.gov.br/Paginas/Mega-Sena.aspx" target="_blank" rel="noopener">Consulte os resultados oficiais da Mega-Sena na CAIXA ↗</a></p>
   </section>
 
   <section class="card">
@@ -270,7 +270,7 @@ h1{color:#84620e}
 <nav class="nav">
  <button id="navDraw"><b>◉</b>Sorteio</button><button id="navMethods"><b>✧</b>Métodos</button><button id="navHistory"><b>▤</b>Histórico</button><button id="navHelp"><b>?</b>Ajuda</button>
 </nav>
-<footer>PEPITO — A CALOPSITA DA SORTE · Versão 1.2 · Entretenimento, curiosidade e experimentação.</footer>
+<footer>PEPITO — A CALOPSITA DA SORTE · Versão 2.0 · Entretenimento, curiosidade e experimentação.</footer>
 </div>
 
 <script>
@@ -296,7 +296,8 @@ const tips=[
  "Numerologia é uma tradição simbólica e cultural; não há evidência de que aumente a chance de acertar a loteria.",
  "O cérebro humano procura padrões naturalmente. Às vezes encontramos desenhos significativos em sequências produzidas ao acaso.",
  "O resultado de um sorteio anterior não altera as probabilidades de um novo sorteio justo.",
- "A chance de acertar a Sena com uma aposta simples é minúscula; por isso, loteria deve ser tratada como entretenimento, nunca como investimento."
+ "A chance de acertar a Sena com uma aposta simples é minúscula; por isso, loteria deve ser tratada como entretenimento, nunca como investimento.",
+ "Na família do Pipito, contam que ele aprendeu a assobiar melodias ouvindo humanos — e que gosta de cantar a música do Mario Bros. Aqui, seu assobio tem uma melodia original."
 ];
 let tipIndex=Math.floor(Math.random()*tips.length);
 $("tipText").textContent=tips[tipIndex];
@@ -464,20 +465,19 @@ function drawGlobe(t){
  const w=gc.clientWidth,h=gc.clientHeight,cx=w/2,cy=h/2,R=Math.min(w,h)*.405;
  gctx.clearRect(0,0,w,h);
  const dt=Math.min((t-lastTime)/16.7||1,1.7);lastTime=t;
- const active=spinning, agitation=active?(0.008+speed*.00016):.0015;
+ const active=spinning, agitation=active?(0.008+speed*.00016):.00022;
  // A little 3D tumble of the complete ball cloud while the globe turns.
  const rot=active?.006+speed*.00008:.0008,cr=Math.cos(rot*dt),sr=Math.sin(rot*dt);
  for(const b of balls){
   // 3D rotation around the globe axis.
   const x=b.x*cr-b.z*sr,z=b.x*sr+b.z*cr;b.x=x;b.z=z;
   // Gravity points down; spinning airflow adds irregular turbulence and lift.
-  b.vy+=.0024*dt;
-  if(active){
-   b.vx+=Math.sin(t*.0017+b.n*1.73)*agitation*dt;
-   b.vy-=.0036*dt;
-   b.vz+=Math.cos(t*.0013+b.n*2.31)*agitation*dt;
-  }
-  b.vx*=.997;b.vy*=.997;b.vz*=.997;
+  b.vy+=active?.0024*dt:.000025*dt;
+  b.vx+=Math.sin(t*.0017+b.n*1.73)*agitation*dt;
+  b.vy+=Math.sin(t*.0011+b.n*2.07)*agitation*.65*dt;
+  b.vz+=Math.cos(t*.0013+b.n*2.31)*agitation*dt;
+  if(active)b.vy-=.0036*dt;
+  const damping=active?.997:.985;b.vx*=damping;b.vy*=damping;b.vz*=damping;
   b.x+=b.vx*dt;b.y+=b.vy*dt;b.z+=b.vz*dt;
   const d=Math.hypot(b.x,b.y,b.z),max=SPHERE_R-b.r;
   if(d>max){
@@ -599,6 +599,15 @@ function pepitoSound(kind){
 }
 const soundButton=document.getElementById("soundBtn");
 soundButton.addEventListener("click",()=>{pepitoMuted=!pepitoMuted;soundButton.textContent=pepitoMuted?"♪":"♫";soundButton.setAttribute("aria-label",pepitoMuted?"Ativar som":"Silenciar sons");soundButton.setAttribute("aria-pressed",String(!pepitoMuted));if(!pepitoMuted){pepitoSound("extract");document.getElementById("speech").textContent="Ativei meu assobio original! Você pode silenciar quando quiser."}});
+let pepitoMusicOn=false,pepitoMusicTimer=0;
+const musicBtn=document.getElementById("musicBtn");
+function pepitoMusicPhrase(){
+ if(!pepitoMusicOn||!pepitoAudio)return;
+ const phrase=[659,784,988,784,698,880,1047,880],base=pepitoAudio.currentTime;
+ phrase.forEach((f,i)=>{const o=pepitoAudio.createOscillator(),g=pepitoAudio.createGain();o.type="sine";o.frequency.value=f;g.gain.setValueAtTime(.0001,base+i*.22);g.gain.exponentialRampToValueAtTime(.018,base+i*.22+.025);g.gain.exponentialRampToValueAtTime(.0001,base+i*.22+.19);o.connect(g).connect(pepitoAudio.destination);o.start(base+i*.22);o.stop(base+i*.22+.2)});
+ pepitoMusicTimer=setTimeout(pepitoMusicPhrase,2600);
+}
+musicBtn.addEventListener("click",()=>{pepitoMusicOn=!pepitoMusicOn;musicBtn.setAttribute("aria-pressed",String(pepitoMusicOn));musicBtn.setAttribute("aria-label",pepitoMusicOn?"Silenciar música ambiente":"Ativar música ambiente");if(pepitoMusicOn){pepitoMuted=false;soundButton.setAttribute("aria-pressed","true");soundButton.setAttribute("aria-label","Silenciar efeitos sonoros");pepitoAudio=pepitoAudio||new (window.AudioContext||window.webkitAudioContext)();pepitoAudio.resume();pepitoMusicPhrase()}else clearTimeout(pepitoMusicTimer)});
 const weatherBtn=document.getElementById("weatherBtn"),weatherCity=document.getElementById("weatherCity");
 weatherBtn.addEventListener("click",async()=>{
  const city=weatherCity.value.trim(),value=document.getElementById("weatherValue"),note=document.getElementById("weatherText");
