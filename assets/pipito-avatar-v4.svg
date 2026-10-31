@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Pipito</title>
+  <desc id="desc">Rosto alegre de uma calopsita cinza, com topete amarelo e bochechas laranjas.</desc>
+  <defs>
+    <linearGradient id="disc" x1=".15" y1="0" x2=".85" y2="1"><stop stop-color="#fff9e8"/><stop offset="1" stop-color="#f2e5be"/></linearGradient>
+    <linearGradient id="plumage" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a0a7a7"/><stop offset="1" stop-color="#697478"/></linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffe77b"/><stop offset="1" stop-color="#efbd39"/></linearGradient>
+  </defs>
+  <circle cx="64" cy="64" r="60" fill="url(#disc)" stroke="#dfb842" stroke-width="4"/>
+  <path d="M25 113c3-23 16-34 39-34s36 11 39 34c-12 9-25 13-39 13s-27-4-39-13" fill="url(#plumage)"/>
+  <path d="M44 43 36 19q-1-5 4-2l16 18 1-26q1-6 5-1l8 24L83 16q5-5 5 2l-5 30z" fill="url(#gold)" stroke="#e9b92f" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M31 65c0-24 14-39 33-39s33 15 33 39c0 20-15 34-33 34S31 85 31 65" fill="url(#gold)"/>
+  <path d="M38 68q-10-3-9 7 2 10 14 7m47-14q10-3 9 7-2 10-14 7" fill="#ef8a3e"/>
+  <ellipse cx="51" cy="62" rx="4.2" ry="5.4" fill="#293338"/><ellipse cx="77" cy="62" rx="4.2" ry="5.4" fill="#293338"/>
+  <circle cx="52.4" cy="60.3" r="1.3" fill="#fff"/><circle cx="78.4" cy="60.3" r="1.3" fill="#fff"/>
+  <path d="m59 69 5-3 5 3-5 8z" fill="#bd6c34"/>
+  <path d="M56 82q8 7 16 0" fill="none" stroke="#80572e" stroke-width="2.3" stroke-linecap="round"/>
+  <path d="M39 99q25 13 50 0" fill="none" stroke="#dce0dc" stroke-width="3" opacity=".7"/>
+</svg>

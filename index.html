@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#f3f0e8">
 <meta name="description" content="PEPITO 3.0 — um laboratório acessível, transparente e divertido para explorar o acaso.">
-<title>PEPITO — A Calopsita da Sorte · v3.0</title>
+<title>PEPITO — A Calopsita da Sorte · v3.1</title>
 <style>
 :root{
  --bg:#171c1e;--panel:#252e31;--panel2:#303a3d;--ink:#f7f2e8;--muted:#c3c0b6;
@@ -33,7 +33,7 @@ h3{font-size:14px;margin:0 0 7px;color:var(--gold)}
 p{margin:0}
 .small{font-size:12px;color:var(--muted);line-height:1.45}
 .mascot-row{display:flex;align-items:center;gap:11px}
-.mascot-photo{width:72px;height:72px;border-radius:50%;object-fit:cover;object-position:48% 18%;border:2px solid var(--gold);background:#e9e5d9;flex:none}
+.mascot-photo{width:72px;height:72px;border-radius:50%;object-fit:contain;border:2px solid var(--gold);background:#f7edcc;flex:none}
 .speech{background:#f4eedf;color:#28251e;border-radius:15px;padding:10px 12px;font-size:14px;line-height:1.35;position:relative}
 .speech:before{content:"";position:absolute;left:-7px;top:20px;border-width:7px 8px 7px 0;border-style:solid;border-color:transparent #f4eedf transparent transparent}
 .machine-choice{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -145,9 +145,9 @@ h1{color:#84620e}
 .tipbird{object-position:50% 18%;background:#f7edcc}
 .tagline{color:var(--muted)}
 .globe-mascot{left:70%;top:-12%;width:62%;height:92%;opacity:.92;will-change:transform,opacity;transition:opacity .22s ease,filter .22s ease}
-@keyframes pipitoSway{0%,100%{transform:translateX(-50%) translateY(0) rotate(0)}30%{transform:translateX(-50%) translateY(-5px) rotate(-1.7deg)}65%{transform:translateX(-50%) translateY(-1px) rotate(1.2deg)}}
+@keyframes pipitoFlight{0%,100%{transform:translateX(-50%) translateY(0) rotate(-1deg) scale(1)}28%{transform:translateX(-50%) translateY(-8px) rotate(1.2deg) scale(1.015)}56%{transform:translateX(-50%) translateY(-2px) rotate(-.7deg) scale(.995)}78%{transform:translateX(-50%) translateY(-10px) rotate(1deg) scale(1.01)}}
 @keyframes pipitoCelebrate{0%,100%{transform:translateX(-50%) translateY(0) rotate(0)}38%{transform:translateX(-50%) translateY(-13px) rotate(-3deg)}68%{transform:translateX(-50%) translateY(1px) rotate(2deg)}}
-body[data-pipito="spin"] .globe-mascot{animation:pipitoSway 1.35s ease-in-out infinite}
+body[data-pipito="spin"] .globe-mascot{animation:pipitoFlight 1.15s ease-in-out infinite;transform-origin:50% 52%}
 body[data-pipito="anticipate"] .globe-mascot{transform:translateX(-50%) rotate(-2deg);filter:drop-shadow(0 0 11px #efc74d)}
 body[data-pipito="celebrate"] .globe-mascot{animation:pipitoCelebrate .72s ease-out 2}
 @keyframes pipitoAvatarPop{0%,100%{transform:scale(1)}38%{transform:scale(1.07)}68%{transform:scale(.98)}}
@@ -176,7 +176,7 @@ body[data-pipito="celebrate"] .mascot-photo{animation:pipitoAvatarPop .72s ease-
 
 <section class="card intro">
  <div class="mascot-row">
-  <img class="mascot-photo" src="./assets/pipito-retrato-v3.png" alt="Pipito, calopsita cinza de topete amarelo e bochechas laranjas">
+  <img class="mascot-photo" src="./assets/pipito-avatar-v4.svg" alt="Pipito, calopsita cinza de topete amarelo e bochechas laranjas">
   <div class="speech" id="speech" aria-live="polite">Olá! Sou o Pipito. Vamos descobrir o que o acaso preparou?</div>
  </div>
  <div class="small" style="align-self:center">Escolha uma máquina e toque em <b>GIRAR</b>. Os botões são grandes e o resultado aparece em seis espaços.</div>
@@ -194,7 +194,7 @@ body[data-pipito="celebrate"] .mascot-photo{animation:pipitoAvatarPop .72s ease-
  <div class="leftcol">
   <section class="card machine-card" id="machineCard">
    <div class="machine-head"><strong id="machineTitle">GLOBO MECÂNICO</strong><span id="machineSubtitle">Visão direta do interior · 60 dezenas</span></div>
-   <div class="globe-stage" id="globeStage"><img class="globe-mascot" id="globeMascot" src="./assets/pipito-calmo-v3.png" data-idle="./assets/pipito-calmo-v3.png" data-excited="./assets/pipito-globo-v3.png" alt="Pipito observa o sorteio atrás do globo"><canvas id="globeCanvas" aria-label="Globo esférico com 60 bolas numeradas"></canvas></div>
+   <div class="globe-stage" id="globeStage"><img class="globe-mascot" id="globeMascot" src="./assets/pipito-calmo-v3.png" data-idle="./assets/pipito-calmo-v3.png" data-spin="./assets/pipito-voando-v1.png" data-celebrate="./assets/pipito-globo-v3.png" alt="Pipito observa o sorteio atrás do globo"><canvas id="globeCanvas" aria-label="Globo esférico com 60 bolas numeradas"></canvas></div>
    <div class="globe-plinth" id="globePlinth">PEPITO · A CALOPSITA DA SORTE</div>
    <div class="crystal-stage hidden" id="crystalStage">
     <div class="crystal-orb" id="crystalOrb"><canvas id="crystalCanvas"></canvas><div class="crystal-number" id="crystalNumber">33</div></div>
@@ -295,7 +295,7 @@ const MASCOT_NAME="Pipito";
 let mode="globe",method="random",spinning=false,speed=0,draw=[],deck=[],history=loadHistory(),soundOn=false,stopTimer=null,spinInterval=null;
 function setPipitoMood(mood,restoreAfter=0){
  const bird=$("globeMascot");if(!bird)return;
- const source=(mood==="spin"||mood==="celebrate")?bird.dataset.excited:bird.dataset.idle;
+ const source=mood==="spin"?bird.dataset.spin:mood==="celebrate"?bird.dataset.celebrate:bird.dataset.idle;
  if(source&&bird.getAttribute("src")!==source)bird.setAttribute("src",source);
  document.body.dataset.pipito=mood;
  if(restoreAfter)setTimeout(()=>{if(!spinning)setPipitoMood("idle")},restoreAfter);
@@ -651,3 +651,4 @@ if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.
 </script>
 </body>
 </html>
+
