@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#f3f0e8">
 <meta name="description" content="PEPITO 3.0 — um laboratório acessível, transparente e divertido para explorar o acaso.">
-<title>PEPITO — A Calopsita da Sorte · v3.1</title>
+<title>PEPITO — A Calopsita da Sorte · v3.2</title>
 <style>
 :root{
  --bg:#171c1e;--panel:#252e31;--panel2:#303a3d;--ink:#f7f2e8;--muted:#c3c0b6;
@@ -21,8 +21,8 @@ button:focus-visible,select:focus-visible{outline:3px solid var(--gold);outline-
 .app{max-width:1200px;margin:auto;padding:10px;display:grid;gap:11px}
 header{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:5px 2px}
 .brand{display:flex;align-items:center;gap:9px;min-width:0}
-.brand-bird{width:53px;height:53px;border-radius:50%;overflow:hidden;border:2px solid var(--gold);background:#e9e5d9;flex:none}
-.brand-bird img{width:100%;height:100%;object-fit:cover;object-position:49% 22%}
+.brand-bird{width:53px;height:53px;border-radius:50%;overflow:hidden;border:0;background:transparent;flex:none}
+.brand-bird img{width:100%;height:100%;object-fit:contain;object-position:center}
 h1{font-size:clamp(26px,6vw,38px);line-height:1;margin:0;color:var(--gold);letter-spacing:.5px}
 .tagline{font-size:12px;color:var(--cream);margin-top:4px}
 .head-actions{display:flex;gap:7px}
@@ -33,7 +33,7 @@ h3{font-size:14px;margin:0 0 7px;color:var(--gold)}
 p{margin:0}
 .small{font-size:12px;color:var(--muted);line-height:1.45}
 .mascot-row{display:flex;align-items:center;gap:11px}
-.mascot-photo{width:72px;height:72px;border-radius:50%;object-fit:contain;border:2px solid var(--gold);background:#f7edcc;flex:none}
+.mascot-photo{width:72px;height:72px;border-radius:50%;object-fit:contain;border:0;background:transparent;flex:none}
 .speech{background:#f4eedf;color:#28251e;border-radius:15px;padding:10px 12px;font-size:14px;line-height:1.35;position:relative}
 .speech:before{content:"";position:absolute;left:-7px;top:20px;border-width:7px 8px 7px 0;border-style:solid;border-color:transparent #f4eedf transparent transparent}
 .machine-choice{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -168,7 +168,7 @@ body[data-pipito="celebrate"] .mascot-photo{animation:pipitoAvatarPop .72s ease-
 <div class="app">
 <header>
  <div class="brand">
-  <div class="brand-bird"><img src="./icons/pepito-192.svg" alt=""></div>
+  <div class="brand-bird"><img src="./assets/pipito-avatar-v4.svg" alt=""></div>
   <div><h1>PEPITO</h1><div class="tagline">A CALOPSITA DA SORTE · Um pequeno laboratório de grandes esperanças.</div></div>
  </div>
  <div class="head-actions"><button class="iconbtn" id="helpBtn" aria-label="Ajuda">?</button><button class="iconbtn" id="settingsBtn" aria-label="Configurações e som">⚙</button><button class="iconbtn" id="soundBtn" aria-label="Ativar efeitos sonoros" aria-pressed="false">♪</button><details class="audio-settings"><summary aria-label="Opções de áudio">♫</summary><div class="audio-pop"><label><input id="musicToggle" type="checkbox"> Música ambiente original</label><label for="volumeControl">Volume <input id="volumeControl" type="range" min="0" max="100" value="45"></label></div></details></div>
