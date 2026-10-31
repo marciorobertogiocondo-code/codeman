@@ -1,0 +1,27 @@
+{
+  "id": "./",
+  "name": "PEPITO — A Calopsita da Sorte",
+  "short_name": "PEPITO",
+  "description": "Um pequeno laboratório de grandes esperanças.",
+  "lang": "pt-BR",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#171c1e",
+  "theme_color": "#202528",
+  "icons": [
+    {
+      "src": "./icons/pepito-192.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/pepito-512.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
