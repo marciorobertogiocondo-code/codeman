@@ -138,7 +138,7 @@ h1{color:#84620e}
 @media(min-width:720px){.app{max-width:1280px}.landscape-only{gap:10px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
 
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.weather-controls{display:flex;gap:6px;margin:6px 0}.weather-controls input{width:100%;min-width:0;border:1px solid #cfc7b7;border-radius:10px;padding:9px;background:#fff;color:#263136;font:inherit}.weather-controls button{white-space:nowrap}.@keyframes pipitoBounce{0%,100%{transform:translateY(0) rotate(0)}40%{transform:translateY(-8px) rotate(-4deg)}70%{transform:translateY(1px) rotate(3deg)}}.globe-mascot{transition:filter .25s}body.pipito-excited .globe-mascot,body.pipito-pop .mascot-photo{animation:pipitoBounce .65s ease}body.pipito-calm .globe-mascot{filter:drop-shadow(0 0 12px #efc74d)}.tile a{color:#735510;font-weight:700}@media(prefers-reduced-motion:reduce){.globe-mascot,body.pipito-excited .globe-mascot,body.pipito-pop .mascot-photo{animation:none!important}}</style>
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.weather-controls{display:flex;gap:6px;margin:6px 0}.weather-controls input{width:100%;min-width:0;border:1px solid #cfc7b7;border-radius:10px;padding:9px;background:#fff;color:#263136;font:inherit}.weather-controls button{white-space:nowrap}.@keyframes pipitoBounce{0%,100%{transform:translateY(0) rotate(0)}40%{transform:translateY(-8px) rotate(-4deg)}70%{transform:translateY(1px) rotate(3deg)}}.globe-mascot{transition:filter .25s}body.pipito-excited .globe-mascot,body.pipito-pop .mascot-photo{animation:pipitoBounce .65s ease}body.pipito-calm .globe-mascot{filter:drop-shadow(0 0 12px #efc74d)}.audio-settings{position:relative}.audio-settings summary{list-style:none;cursor:pointer;display:grid;place-items:center;width:45px;height:45px;border-radius:13px;background:#f6f1e5;border:1px solid #d5cebd;color:#263136;font-size:18px}.audio-settings summary::-webkit-details-marker{display:none}.audio-pop{position:absolute;right:0;top:52px;z-index:10;width:220px;padding:12px;background:#fffdf8;border:1px solid #ded8c9;border-radius:13px;box-shadow:0 8px 24px #20252822;display:grid;gap:10px;font-size:13px}.audio-pop label{display:flex;align-items:center;gap:7px}.audio-pop input[type=range]{width:100px}.tile a{color:#735510;font-weight:700}@media(prefers-reduced-motion:reduce){.globe-mascot,body.pipito-excited .globe-mascot,body.pipito-pop .mascot-photo{animation:none!important}}</style>
 
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="icon" type="image/svg+xml" href="./icons/pepito-192.svg">
@@ -156,7 +156,7 @@ h1{color:#84620e}
   <div class="brand-bird"><img src="./assets/pipito-retrato.svg" alt="Pipito, calopsita cinza de rosto amarelo"></div>
   <div><h1>PEPITO</h1><div class="tagline">A CALOPSITA DA SORTE · Um pequeno laboratório de grandes esperanças.</div></div>
  </div>
- <div class="head-actions"><button class="iconbtn" id="helpBtn" aria-label="Ajuda">?</button><button class="iconbtn" id="settingsBtn" aria-label="Configurações e som">⚙</button><button class="iconbtn" id="soundBtn" aria-label="Ativar efeitos sonoros" aria-pressed="false">♪</button><button class="iconbtn" id="musicBtn" aria-label="Ativar música ambiente" aria-pressed="false">♫</button></div>
+ <div class="head-actions"><button class="iconbtn" id="helpBtn" aria-label="Ajuda">?</button><button class="iconbtn" id="settingsBtn" aria-label="Configurações e som">⚙</button><button class="iconbtn" id="soundBtn" aria-label="Ativar efeitos sonoros" aria-pressed="false">♪</button><details class="audio-settings"><summary aria-label="Opções de áudio">♫</summary><div class="audio-pop"><label><input id="musicToggle" type="checkbox"> Música ambiente original</label><label for="volumeControl">Volume <input id="volumeControl" type="range" min="0" max="100" value="45"></label></div></details></div>
 </header>
 
 <section class="card intro">
@@ -587,27 +587,28 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)requestAni
 buttons();updateResults();
 
 /* PEPITO 2.0: previsão por cidade e sons originais, sempre iniciados pelo usuário. */
-let pepitoAudio=null,pepitoMuted=true;
+let pepitoAudio=null,pepitoMuted=true,pepitoVolume=.45;
 function pepitoSound(kind){
  if(pepitoMuted)return;
  try{
   pepitoAudio=pepitoAudio||new (window.AudioContext||window.webkitAudioContext)();
   if(pepitoAudio.state==="suspended")pepitoAudio.resume();
   const notes=kind==="start"?[392,523,659]:kind==="stop"?[523,440]:[784,988];
-  notes.forEach((f,i)=>{const o=pepitoAudio.createOscillator(),g=pepitoAudio.createGain();o.type="sine";o.frequency.value=f;g.gain.setValueAtTime(.0001,pepitoAudio.currentTime+i*.08);g.gain.exponentialRampToValueAtTime(.055,pepitoAudio.currentTime+i*.08+.015);g.gain.exponentialRampToValueAtTime(.0001,pepitoAudio.currentTime+i*.08+.16);o.connect(g).connect(pepitoAudio.destination);o.start(pepitoAudio.currentTime+i*.08);o.stop(pepitoAudio.currentTime+i*.08+.17)});
+  notes.forEach((f,i)=>{const o=pepitoAudio.createOscillator(),g=pepitoAudio.createGain();o.type="sine";o.frequency.value=f;g.gain.setValueAtTime(.0001,pepitoAudio.currentTime+i*.08);g.gain.exponentialRampToValueAtTime(.055*pepitoVolume,pepitoAudio.currentTime+i*.08+.015);g.gain.exponentialRampToValueAtTime(.0001,pepitoAudio.currentTime+i*.08+.16);o.connect(g).connect(pepitoAudio.destination);o.start(pepitoAudio.currentTime+i*.08);o.stop(pepitoAudio.currentTime+i*.08+.17)});
  }catch(e){console.info("Áudio não disponível neste navegador")}
 }
 const soundButton=document.getElementById("soundBtn");
 soundButton.addEventListener("click",()=>{pepitoMuted=!pepitoMuted;soundButton.textContent=pepitoMuted?"♪":"♫";soundButton.setAttribute("aria-label",pepitoMuted?"Ativar som":"Silenciar sons");soundButton.setAttribute("aria-pressed",String(!pepitoMuted));if(!pepitoMuted){pepitoSound("extract");document.getElementById("speech").textContent="Ativei meu assobio original! Você pode silenciar quando quiser."}});
 let pepitoMusicOn=false,pepitoMusicTimer=0;
-const musicBtn=document.getElementById("musicBtn");
+const musicToggle=document.getElementById("musicToggle"),volumeControl=document.getElementById("volumeControl");
+volumeControl.addEventListener("input",()=>{pepitoVolume=Number(volumeControl.value)/100});
 function pepitoMusicPhrase(){
  if(!pepitoMusicOn||!pepitoAudio)return;
  const phrase=[659,784,988,784,698,880,1047,880],base=pepitoAudio.currentTime;
- phrase.forEach((f,i)=>{const o=pepitoAudio.createOscillator(),g=pepitoAudio.createGain();o.type="sine";o.frequency.value=f;g.gain.setValueAtTime(.0001,base+i*.22);g.gain.exponentialRampToValueAtTime(.018,base+i*.22+.025);g.gain.exponentialRampToValueAtTime(.0001,base+i*.22+.19);o.connect(g).connect(pepitoAudio.destination);o.start(base+i*.22);o.stop(base+i*.22+.2)});
+ phrase.forEach((f,i)=>{const o=pepitoAudio.createOscillator(),g=pepitoAudio.createGain();o.type="sine";o.frequency.value=f;g.gain.setValueAtTime(.0001,base+i*.22);g.gain.exponentialRampToValueAtTime(.018*pepitoVolume,base+i*.22+.025);g.gain.exponentialRampToValueAtTime(.0001,base+i*.22+.19);o.connect(g).connect(pepitoAudio.destination);o.start(base+i*.22);o.stop(base+i*.22+.2)});
  pepitoMusicTimer=setTimeout(pepitoMusicPhrase,2600);
 }
-musicBtn.addEventListener("click",()=>{pepitoMusicOn=!pepitoMusicOn;musicBtn.setAttribute("aria-pressed",String(pepitoMusicOn));musicBtn.setAttribute("aria-label",pepitoMusicOn?"Silenciar música ambiente":"Ativar música ambiente");if(pepitoMusicOn){pepitoMuted=false;soundButton.setAttribute("aria-pressed","true");soundButton.setAttribute("aria-label","Silenciar efeitos sonoros");pepitoAudio=pepitoAudio||new (window.AudioContext||window.webkitAudioContext)();pepitoAudio.resume();pepitoMusicPhrase()}else clearTimeout(pepitoMusicTimer)});
+musicToggle.addEventListener("change",()=>{pepitoMusicOn=musicToggle.checked;if(pepitoMusicOn){pepitoAudio=pepitoAudio||new (window.AudioContext||window.webkitAudioContext)();pepitoAudio.resume();pepitoMusicPhrase()}else clearTimeout(pepitoMusicTimer)});
 const weatherBtn=document.getElementById("weatherBtn"),weatherCity=document.getElementById("weatherCity");
 weatherBtn.addEventListener("click",async()=>{
  const city=weatherCity.value.trim(),value=document.getElementById("weatherValue"),note=document.getElementById("weatherText");
